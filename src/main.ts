@@ -12,6 +12,29 @@ $("#beats_in_bar").on("input", generate);
 $("#total_strums").on("input", generate);
 $("#fix_first").on("input", generate);
 
+$("#generate_manual").on("click", changeManual);
+$("#button1").on("click", changeSign);
+$("#button2").on("click", changeSign);
+$("#button3").on("click", changeSign);
+$("#button4").on("click", changeSign);
+$("#button5").on("click", changeSign);
+$("#button6").on("click", changeSign);
+$("#button7").on("click", changeSign);
+$("#button8").on("click", changeSign);
+$("#button9").on("click", changeSign);
+$("#button10").on("click", changeSign);
+$("#button11").on("click", changeSign);
+$("#button12").on("click", changeSign);
+$("#button13").on("click", changeSign);
+$("#button14").on("click", changeSign);
+$("#button15").on("click", changeSign);
+$("#button16").on("click", changeSign);
+
+let pattern_sig_common : string[] = [];
+let pattern_final_common : string[] = [];
+let bib_common : number = 0;
+let tts_common : number = 0;
+
 function generate() {
     let bib = $("#beats_in_bar").val() as number;
     let tts = $("#total_strums").val() as number;
@@ -54,8 +77,38 @@ function generate() {
     if (fix_first) {
         pattern_final[0] = "↓";
     }
-
+    pattern_sig_common = pattern_sig;
+    bib_common = bib;
+    tts_common = tts;
     $("#area_output").html(pattern_sig.join("") + "<br>" + pattern_final.join(""));
+}
+
+function changeManual()
+{
+    let pattern_final : string[] = Array(16).fill("&nbsp;");
+    for (let i = 0; i < 16; i++) {
+        pattern_final[i] = "↓";
+    }
+    
+    $("#area_output_manual").html(pattern_sig_common.join("") + "<br>" + pattern_final.join(""));
+    pattern_final_common = pattern_final;
+}
+
+function changeSign(this: any) {    
+    const inputName = $(this).attr('name');
+    console.log(`Input name is ${inputName}`);
+    if (inputName !== undefined && pattern_final_common.length > 0) {
+        if(pattern_final_common[parseInt(inputName) - 1] == "↓")
+        {
+            pattern_final_common[parseInt(inputName) - 1] = "↑";
+        }
+        else
+        {
+            pattern_final_common[parseInt(inputName) - 1] = "↓";
+        }
+    }
+
+    $("#area_output_manual").html(pattern_sig_common.join("") + "<br>" + pattern_final_common.join(""));
 }
 
 generate();

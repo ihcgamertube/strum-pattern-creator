@@ -2,7 +2,7 @@
     font-family: Roboto, Arial, Helvetica, sans-serif;
 }
 
-#area_output {
+#area_output, #area_output_manual {
     font-family: 'Courier New', Courier, monospace;
     margin-top: 30px;
     background-color: white;
@@ -16,10 +16,21 @@
     text-align: center;
 }
 
-#generate_button {
+#generate_button, #generate_manual {
     font-size: x-large;
     margin-top: 20px;
     width: 100%;
+}
+
+#sign_button {
+    font-size: x-small;
+    margin-top: 20px;
+    margin-left: 5px;
+    width: 5%;
+}
+
+#firstBeat {
+    margin-left: 12%;
 }
 
 
