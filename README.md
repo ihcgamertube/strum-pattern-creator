@@ -4,6 +4,8 @@ Random guitar strum pattern generator for practice.
 Check it out: [vilda.net/s/rsp](https://vilda.net/s/rsp/).
 It should look as follows: ![image](https://user-images.githubusercontent.com/7661193/168054877-45fb21e7-5929-403b-be14-66df3dd7806c.png)
 
+updated look: ![Capture](https://user-images.githubusercontent.com/75474698/235368038-2ced5129-bec6-4fd6-9d87-c69bbc478ba4.PNG)
+
 It also contains an initial Python version `random_strum_pattern.py` after which I decided I could make it a small website with a bunch of buttons.
 
 ## Contributing
