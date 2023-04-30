@@ -30,10 +30,22 @@ $("#button14").on("click", changeSign);
 $("#button15").on("click", changeSign);
 $("#button16").on("click", changeSign);
 
+let maxPattern : number = 16;
 let pattern_sig_common : string[] = [];
 let pattern_final_common : string[] = [];
 let bib_common : number = 0;
 let tts_common : number = 0;
+
+let patternSymbols: string[] = ["↓", "↑", "🢓", "_"]
+let patternsRotatorPerButton : number[] = [];
+
+function fillPatternRotator()
+{
+    patternsRotatorPerButton = [];
+    for (let i = 0; i < maxPattern; i++) {
+        patternsRotatorPerButton.push(0);
+    }
+}
 
 function generate() {
     let bib = $("#beats_in_bar").val() as number;
@@ -85,9 +97,10 @@ function generate() {
 
 function changeManual()
 {
-    let pattern_final : string[] = Array(16).fill("&nbsp;");
-    for (let i = 0; i < 16; i++) {
-        pattern_final[i] = "↓";
+    fillPatternRotator();
+    let pattern_final : string[] = Array(maxPattern).fill("&nbsp;");
+    for (let i = 0; i < maxPattern; i++) {
+        pattern_final[i] = patternSymbols[0];
     }
     
     $("#area_output_manual").html(pattern_sig_common.join("") + "<br>" + pattern_final.join(""));
@@ -96,19 +109,20 @@ function changeManual()
 
 function changeSign(this: any) {    
     const inputName = $(this).attr('name');
-    console.log(`Input name is ${inputName}`);
     if (inputName !== undefined && pattern_final_common.length > 0) {
-        if(pattern_final_common[parseInt(inputName) - 1] == "↓")
+        let index : number = parseInt(inputName) - 1;
+
+        patternsRotatorPerButton[index]++;
+        if(patternsRotatorPerButton[index] == patternSymbols.length)
         {
-            pattern_final_common[parseInt(inputName) - 1] = "↑";
+            patternsRotatorPerButton[index] = 0;
         }
-        else
-        {
-            pattern_final_common[parseInt(inputName) - 1] = "↓";
-        }
+
+        pattern_final_common[index] = patternSymbols[patternsRotatorPerButton[index]];
     }
 
     $("#area_output_manual").html(pattern_sig_common.join("") + "<br>" + pattern_final_common.join(""));
 }
 
+fillPatternRotator();
 generate();
