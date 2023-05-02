@@ -36,7 +36,7 @@ let pattern_final_common : string[] = [];
 let bib_common : number = 0;
 let tts_common : number = 0;
 
-let patternSymbols: string[] = ["↓", "↑", "🢓", "_"]
+let patternSymbols: string[] = ["↓", "↑", "ˇ", "ˆ", "_"]
 let patternsRotatorPerButton : number[] = [];
 
 function fillPatternRotator()
